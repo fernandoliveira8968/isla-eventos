@@ -33,6 +33,19 @@ Route::get('/eventos', function () use ($eventos) {
  ]);
 });
 
+Route::get('/eventos/proximos', function () use ($eventos) {
+    $hoje = date('Y-m-d');
+    $proximos = array_filter($eventos,
+    fn ($evento) => $evento['data'] >= $hoje);
+    usort($proximos,
+    fn ($a, $b) => strcmp($a['data'], $b['data']));
+
+    return view('eventos.index', [
+        'eventos' => $proximos,
+        'tipo' => null,
+    ]);
+});
+
 Route::get('/eventos/{id}', function (int $id) use ($eventos) {
  $evento = null;
  foreach ($eventos as $item) {
