@@ -12,10 +12,11 @@
         <h1>Eventos
             @if ($tipo) ( {{ $tipo }} ) @endif
         </h1>
-        <a href="/eventos">Todos</a>
-        <a href="/eventos?tipo=workshop">Workshop</a>
-        <a href="/eventos?tipo=palestra">Palestra</a>
-        <a href="/eventos?tipo=hackathon">Hackathon</a>
+        <a href="{{route('eventos.index')}}">Todos</a>
+        <a href="{{ route('eventos.index', ['disponibilidade' => 'disponiveis']) }}">Disponíveis</a>
+        <a href="{{ route('eventos.index', ['tipo' => 'workshop']) }}">Workshop</a>
+        <a href="{{ route('eventos.index', ['tipo' => 'palestra']) }}">Palestra</a>
+        <a href="{{ route('eventos.index', ['tipo' => 'hackathon']) }}">Hackathon</a>
         <a href="/eventos/proximos">Próximos Eventos</a>
         <table>
             @forelse ($eventos as $evento)
