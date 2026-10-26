@@ -16,6 +16,7 @@
         <a href="/eventos?tipo=workshop">Workshop</a>
         <a href="/eventos?tipo=palestra">Palestra</a>
         <a href="/eventos?tipo=hackathon">Hackathon</a>
+        <a href="/eventos/proximos">Próximos Eventos</a>
         <table>
             @forelse ($eventos as $evento)
                 <tr>
