@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\InicioController;
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::get('/', [InicioController::class, 'index'])
+    ->name('inicio');
 
 Route::get('/eventos', [EventoController::class, 'index'])
     ->name('eventos.index');
