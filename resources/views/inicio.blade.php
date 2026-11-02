@@ -13,3 +13,10 @@
             @endforelse
         </ul>
 @endsection
+@push('estilos')
+<style>
+    .etiqueta-workshop  { background: #2563eb; }
+    .etiqueta-palestra  { background: #16a34a; }
+    .etiqueta-hackathon { background: #ea580c; }
+</style>
+@endpush

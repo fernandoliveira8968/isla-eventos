@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>@yield('titulo', 'Início') - {{ config('app.name') }}</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        @stack('estilos')
     </head>
     <body>
         @include('partials.menu')

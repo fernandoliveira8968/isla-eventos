@@ -15,3 +15,6 @@ O título apresenta o script como texto.
 
 E2.
 Ao abrir a página o script é executado e aparece um pop-up alerta com a mensagem (XSS). A partir do momento em que o {!! !!} é utilizado, deixa de interpretar o script como puro texto.
+
+Tanto o yield/section como o stack/push guardam um espaço de "armazenamento" para apresentar dados.
+No yield/section apenas posso colocar 1 informação, porque se adicionar mais, irá substituir a antiga. O push/stack servem o mesmo propósito que o yield/section mas posso colocar mais que 1 conteudo por "armazenamento" sem que se substituam.
