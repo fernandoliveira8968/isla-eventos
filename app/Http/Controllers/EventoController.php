@@ -46,6 +46,24 @@ class EventoController extends Controller
         ]);
     }
     
+    public function porTipo(string $tipo){
+        $eventos = config('eventos');
+        $tipos = array_column($eventos, 'tipo');
+
+        if (!in_array($tipo, $tipos, true)){
+            abort(404);
+        }
+
+        $filtrados = array_filter($eventos,
+            fn ($evento) => $evento['tipo'] === $tipo
+        );
+
+            return view('eventos.index', [
+                'eventos' => $filtrados,
+                'tipo' => $tipo,
+            ]);
+        
+    }
 
     /**
      * Show the form for creating a new resource.

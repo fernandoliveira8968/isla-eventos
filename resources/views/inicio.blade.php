@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name') }}</title>
-    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" rel="stylesheet">
-</head>
-<body>
-    <main class="container">
+@extends('layouts.app')
+@section('titulo')
+@section('conteudo')
     <h1>{{ config('app.name') }}</h1>
     <p>Workshops, palestras e hackathons do ISLA Gaia.</p>
     <p><a href="{{ route('eventos.index') }}" role="button">Ver eventos</a></p>
@@ -24,7 +17,4 @@
                 <li>Não há próximos eventos.</li>
             @endforelse
         </ul>
-
-</main>
-</body>
-</html>
+@endsection
