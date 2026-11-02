@@ -7,14 +7,9 @@
     <h2>Próximos Eventos</h2>
         <ul>
             @forelse ($proximos as $evento)
-                <li>
-                    <a href="{{ route('eventos.show', $evento['id']) }}">
-                        {{ $evento['titulo'] }}
-                    </a>
-                    - {{ date('d/m/Y', strtotime($evento['data'])) }}
-                </li>
+            <x-cartao-evento :evento="$evento" />
             @empty
-                <li>Não há próximos eventos.</li>
+                <x-alerta>Ainda não há eventos marcados.</x-alerta>
             @endforelse
         </ul>
 @endsection
