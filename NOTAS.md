@@ -33,4 +33,9 @@ Titulo - varchar
 Data - Date
 Vagas - smallint
 
-Vagas é unsigned porque não pode ter número negativos. 
+Vagas é unsigned porque não pode ter número negativos.
+
+C3.
+O comando apaga as tabelas todas e volta a dar migrate. Depois insere os dados do Seeder na tabela Eventos.
+Não deve ser corrido em servidores com inscrições reais porque apaga as tabelas assim como os seus dados. Logo, os dados inseridos pelos utilizadores
+desapareciam e ficavam apenas os dados do Seeder.
