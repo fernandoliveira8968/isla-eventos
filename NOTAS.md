@@ -18,3 +18,19 @@ Ao abrir a página o script é executado e aparece um pop-up alerta com a mensag
 
 Tanto o yield/section como o stack/push guardam um espaço de "armazenamento" para apresentar dados.
 No yield/section apenas posso colocar 1 informação, porque se adicionar mais, irá substituir a antiga. O push/stack servem o mesmo propósito que o yield/section mas posso colocar mais que 1 conteudo por "armazenamento" sem que se substituam.
+
+PL05
+
+A3.
+SQLSTATE[42S02]: Base table or view not found: 1146 Table 'isla_eventos.sessions' doesn't exist
+O Laravel procura a tabela Sessions porque é onde estariam guardadas as sessões da base de dados.
+
+A4.
+A base de dados apresenta 4 tabelas. Esta consulta não foi feita pelo php artisan db:show porque obtenho um erro pelo MariaDB desatualizado. No entanto, no macos esta é a única versão do XAMPP. A consulta foi feita através do PHPMyAdmin.
+
+B2.
+Titulo - varchar
+Data - Date
+Vagas - smallint
+
+Vagas é unsigned porque não pode ter número negativos. 
