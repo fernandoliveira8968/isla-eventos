@@ -23,6 +23,5 @@ class EventoSeeder extends Seeder
             'data' => '2026-09-30', 'local' => 'Laboratório 1.02', 'vagas' => 25, 'inscritos' => 25, 'created_at' => now(), 'updated_at' => now(),]);
         DB::table('eventos')->insert(['id' => 5, 'titulo' => 'Conversa com antigos alunos DWDM', 'tipo' => 'palestra',
             'data' => '2026-12-02', 'local' => 'Sala 3.10', 'vagas' => 40, 'inscritos' => 9, 'created_at' => now(), 'updated_at' => now(),]);
-        $this->call(EventoSeeder::class);
     }
 }

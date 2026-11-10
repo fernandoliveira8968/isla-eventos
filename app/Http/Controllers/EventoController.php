@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\DB;
 
 
 class EventoController extends Controller
@@ -11,58 +12,48 @@ class EventoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): View
+    public function index(Request $request)
     {
-        $eventos = config('eventos');
-        $tipo = request('tipo');
-        $disponibilidade = request('disponibilidade');
+        $tipo = $request->query('tipo');
+        $eventos = DB::table('eventos')
+        ->when($tipo, fn ($consulta) => $consulta->where('tipo', $tipo))
+        ->orderBy('data')
+        ->get();
 
-        if ($tipo) {
-            $eventos = array_filter($eventos,
-            fn ($evento) => $evento['tipo'] === $tipo);
-        }
         return view('eventos.index', [
             'eventos' => $eventos,
             'tipo' => $tipo,
         ]);
     }
 
-    public function proximos(): View {
+    public function proximos() {
         
-        $eventos = config('eventos');
-        $hoje = date('Y-m-d');
-
-        $proximos = array_filter(
-            $eventos,
-            fn ($evento) => $evento['data'] >= $hoje);
-        usort(
-            $proximos,
-            fn ($a, $b) => strcmp($a['data'], $b['data'])
-        );
+        $eventos = DB::table('eventos')
+        ->where('data', '>=', now()->toDateString())
+        ->orderBy('data')
+        ->limit(3)
+        ->get();
 
         return view('eventos.index', [
-            'eventos' => $proximos,
+            'eventos' => $eventos,
             'tipo' => null,
         ]);
     }
     
     public function porTipo(string $tipo){
-        $eventos = config('eventos');
-        $tipos = array_column($eventos, 'tipo');
+        $eventos = DB::table('eventos')
+        -> where('tipo', $tipo)
+        -> orderBy('data')
+        -> get();
 
-        if (!in_array($tipo, $tipos, true)){
+        if ($eventos->isEmpty()) {
             abort(404);
         }
 
-        $filtrados = array_filter($eventos,
-            fn ($evento) => $evento['tipo'] === $tipo
-        );
-
-            return view('eventos.index', [
-                'eventos' => $filtrados,
-                'tipo' => $tipo,
-            ]);
-        
+        return view ('eventos.index', [
+            'eventos' => $eventos,
+            'tipo' => $tipo,
+        ]);    
     }
 
     /**
@@ -86,22 +77,12 @@ class EventoController extends Controller
      */
     public function show(int $id): View
     {
-        $evento = $this -> procurar($id);
+        $evento = DB::table('eventos')->find($id);
         
         if ($evento === null) {
             abort(404);
         }
         return view('eventos.show', ['evento' => $evento]);
-    }
-
-    private function procurar(int $id): ?array
-    {
-        foreach (config('eventos') as $evento) {
-            if ($evento['id'] === $id) {
-                return $evento;
-            }
-        }
-        return null;
     }
 
     /**

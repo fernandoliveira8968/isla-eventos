@@ -39,3 +39,9 @@ C3.
 O comando apaga as tabelas todas e volta a dar migrate. Depois insere os dados do Seeder na tabela Eventos.
 Não deve ser corrido em servidores com inscrições reais porque apaga as tabelas assim como os seus dados. Logo, os dados inseridos pelos utilizadores
 desapareciam e ficavam apenas os dados do Seeder.
+
+D3.
+Cannot use object of type stdClass as array
+
+D4.
+? representa um espaço vazio e que como o ' OR 1=1 é lido como um tipo e este não existe, é devolvido um "espaço vazio"
