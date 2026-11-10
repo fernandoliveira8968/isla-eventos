@@ -45,3 +45,6 @@ Cannot use object of type stdClass as array
 
 D4.
 ? representa um espaço vazio e que como o ' OR 1=1 é lido como um tipo e este não existe, é devolvido um "espaço vazio"
+
+Desafio Autónomo
+O seeder não deve correr sempre porque iria inserir demasiados dados falsos
