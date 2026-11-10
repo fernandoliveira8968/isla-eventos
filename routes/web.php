@@ -16,8 +16,8 @@ Route::get('/eventos/proximos', [EventoController::class, 'proximos'] )
 Route::get('/eventos/tipo/{tipo}', [EventoController::class, 'porTipo'])
     ->name('eventos.tipo');
 
-Route::get('/eventos/{id}', [EventoController::class, 'show']) 
-    ->whereNumber('id')
+Route::get('/eventos/{evento}', [EventoController::class, 'show']) 
+    ->whereNumber('evento')
     ->name('eventos.show');
 
 Route::fallback(function () {

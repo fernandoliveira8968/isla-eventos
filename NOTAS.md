@@ -48,3 +48,9 @@ D4.
 
 Desafio Autónomo
 O seeder não deve correr sempre porque iria inserir demasiados dados falsos
+
+PL06
+
+A2.
+Iria procurar uma tabela "locals" que não existe, porque locais é o plural de local em Português e não em inglês.
+
