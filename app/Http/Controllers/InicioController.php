@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\View\View;
+use App\Models\Tipo;
 
 class InicioController extends Controller
 {
@@ -15,6 +16,9 @@ class InicioController extends Controller
             ->limit(3)
             ->get();
 
-        return view('inicio', ['proximos' => $proximos]);
+        return view('inicio', [
+            'proximos' => $proximos,
+            'tipos' => Tipo::withCount('eventos')->orderBy('nome')->get(),
+        ]);
     }
 }

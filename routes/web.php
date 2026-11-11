@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\TipoController;
 
 Route::get('/', [InicioController::class, 'index'])
     ->name('inicio');

@@ -9,9 +9,9 @@ class TipoController extends Controller
     public function show(Tipo $tipo){
         $eventos = $tipo->eventos()->orderBy('data')->get();
 
-        return view('tipo.show', [
+        return view('tipos.show', [
             'tipo' => $tipo,
-            'evento' => $eventos,
+            'eventos' => $eventos,
         ]);
     }
 }
