@@ -6,9 +6,9 @@
     </h1>
     <a href="{{route('eventos.index')}}">Todos</a>
     <a href="{{ route('eventos.index', ['disponibilidade' => 'disponiveis']) }}">Disponíveis</a>
-    <a href="{{ route('eventos.tipo', ['tipo' => 'workshop']) }}">Workshop</a>
-    <a href="{{ route('eventos.tipo', ['tipo' => 'palestra']) }}">Palestra</a>
-    <a href="{{ route('eventos.tipo', ['tipo' => 'hackathon']) }}">Hackathon</a>
+    @foreach ($tipos as $t)
+        <a href="{{ route('eventos.tipo', ['tipo' => $t -> slug]) }}"> {{ $t->nome }} </a>
+    @endforeach
     <a href="/eventos/proximos">Próximos Eventos</a>
     <table>
         @forelse ($eventos as $evento)
@@ -20,7 +20,7 @@
                     <a href="/eventos/{{ $evento->id }}">{{ $evento->titulo }}</a>
                 </td>
                 <td>
-                    {{ date('d/m/Y', strtotime ($evento->data) ) }}
+                    {{ $evento->data->format('d/m/Y') }}
                 </td>
                 <td> 
                     @if ($evento->inscritos >= $evento->vagas)

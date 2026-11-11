@@ -54,3 +54,6 @@ PL06
 A2.
 Iria procurar uma tabela "locals" que não existe, porque locais é o plural de local em Português e não em inglês.
 
+B3.
+Porque o Tipo seeder define o tipo a ser adicionado na base de dados do evento. Se o EventoSeeder correr antes, o campo tipo vai ficar vazio.
+

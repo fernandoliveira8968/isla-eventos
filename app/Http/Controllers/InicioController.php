@@ -9,7 +9,7 @@ class InicioController extends Controller
 {
     public function index(): View
     {
-        $proximos = Evento::query()
+        $proximos = Evento::with('tipo')
             ->where('data', '>=', now()->toDateString())
             ->orderBy('data')
             ->limit(3)

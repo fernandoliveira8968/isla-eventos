@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\DB;
 use App\Models\Evento;
+use App\Models\Tipo;
 
 
 class EventoController extends Controller
@@ -16,20 +16,21 @@ class EventoController extends Controller
     public function index(Request $request)
     {
         $tipo = $request->query('tipo');
-        $eventos = Evento::query()
-        ->when($tipo, fn ($consulta) => $consulta->where('tipo', $tipo))
+        $eventos = Evento::with('tipo')
+        ->when($tipo, fn ($c) => $c -> whereRelation('tipo', 'slug', $tipo))
         ->orderBy('data')
         ->get();
 
         return view('eventos.index', [
             'eventos' => $eventos,
             'tipo' => $tipo,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);
     }
 
     public function proximos() {
         
-        $eventos = Evento::query()
+        $eventos = Evento::with('tipo')
         ->where('data', '>=', now()->toDateString())
         ->orderBy('data')
         ->limit(3)
@@ -38,12 +39,13 @@ class EventoController extends Controller
         return view('eventos.index', [
             'eventos' => $eventos,
             'tipo' => null,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);
     }
     
     public function porTipo(string $tipo){
-        $eventos = Evento::query()
-        -> where('tipo', $tipo)
+        $eventos = Evento::with('tipo')
+        -> whereRelation('tipo', 'slug', $tipo)
         -> orderBy('data')
         -> get();
 
@@ -54,6 +56,7 @@ class EventoController extends Controller
         return view ('eventos.index', [
             'eventos' => $eventos,
             'tipo' => $tipo,
+            'tipos' => Tipo::orderBy('nome')->get(),
         ]);    
     }
 

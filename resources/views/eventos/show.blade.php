@@ -5,8 +5,8 @@
     <x-alerta tipo="aviso">Evento esgotado!</x-alerta>
 @endif
 <h1>{{ $evento->titulo }}</h1>
-<p> Tipo: {{ $evento->titulo }} </p>
-<p> Data: {{ date('d/m/Y', strtotime ($evento->data) ) }} </p>
+<p> Tipo: {{ $evento->tipo?->nome }} </p>
+<p> Data: {{ $evento->data->format('d/m/Y') }} </p>
 <p> Local: {{ $evento->local }} </p>
 <p> Inscritos: {{ $evento->inscritos }} de {{ $evento->vagas }} </p>
 @if ($evento -> descricao)
