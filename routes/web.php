@@ -20,6 +20,9 @@ Route::get('/eventos/{evento}', [EventoController::class, 'show'])
     ->whereNumber('evento')
     ->name('eventos.show');
 
+Route::get('/tipos/{tipo:slug}', [TipoController::class, 'show'])
+    ->name('tipos.show');
+
 Route::fallback(function () {
     return response()->view('errors.404', [], 404);
 });

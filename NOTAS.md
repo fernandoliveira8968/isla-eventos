@@ -57,3 +57,5 @@ Iria procurar uma tabela "locals" que não existe, porque locais é o plural de 
 B3.
 Porque o Tipo seeder define o tipo a ser adicionado na base de dados do evento. Se o EventoSeeder correr antes, o campo tipo vai ficar vazio.
 
+C2.
+Sem with apareceu 6, porque fez 1 consulta aos eventos e 1 consulta para cada evento para recolher o tipo. Com with apareceu 2, porque fez 2 consultas (1 ao evento e 1 ao tipo). Se fossem 1000, apareciam 1001 (1+1000) sem with e 2 (1+1) com with.
